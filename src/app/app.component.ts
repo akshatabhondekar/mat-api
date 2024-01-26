@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductService } from './product.service';
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'matAPI';
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 }
+
+  

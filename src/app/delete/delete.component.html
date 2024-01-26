@@ -1,0 +1,16 @@
+<div class="custom">
+    <h3 mat-dialog-title>Are you sure to delete this product?</h3>
+    <div class="custom-dialog">
+        <span>Id: {{ data.id }}</span>
+        <span>Title: {{ data.title }}</span>
+        <span>discription Id: {{ data.discription }}</span>
+        <span>discription Id: {{ data.price }}</span>
+    </div>
+
+    <div mat-dialog-actions>
+        <button class="mat-button" style="background-color: rgb(196, 48, 48);" mat-button color="warn"
+            [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
+        <button class="mat-button" style="background-color: rgb(17, 151, 223);" (click)="onNoClick()"
+            tabindex="-1">Cancel</button>
+    </div>
+</div>

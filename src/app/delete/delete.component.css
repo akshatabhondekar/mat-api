@@ -1,0 +1,14 @@
+/* your.component.css */
+
+.custom {
+    font-size: 16px; /* Set the desired font size */
+  }
+  
+  .custom-dialog {
+    font-family: 'Arial', sans-serif; /* Set the desired font family */
+    font-weight: bold; /* Set the desired font weight */
+    color: #333; /* Set the desired text color */
+  }
+  
+  /* Add any other styles as needed */
+  

@@ -1,0 +1,91 @@
+  <form [formGroup]="userForm">
+    <label for="searchInput"></label>
+    <div class="container">
+        <input class="form-control form-control-sm" #inputText (input)="getSearchText(inputText.value)" [(ngModel)]="searchTerm" placeholder="Search...">
+        <br>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- i have used paginate pipe with itemsper page page size and currentpage
+                 for pagination see in the below for forloop -->
+            <tr *ngFor="let Product of productData | paginate: { itemsPerPage: pageSize, currentPage: p }">
+                <td>{{Product.id}}</td>
+                <td>{{Product.title}}</td>
+                <td>{{Product.description}}</td>
+                <td>{{Product.price}}</td>
+                <td>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item color="primary"
+                            (click)="editProduct( Product.id, Product.title, Product.description, Product.price)">
+                            <mat-icon color="primary">edit</mat-icon>
+                            Edit
+                        </button>
+                        <button mat-menu-item color="warn"
+                            (click)="delete( Product.id, Product.title, Product.description, Product.price)">
+                            <mat-icon color="warn">delete</mat-icon>
+                            Delete
+                        </button>
+                    </mat-menu>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <!-- this is my ngx pagination please check above ngFor loop for better understading -->
+    <pagination-controls class="paginate" (pageChange)="p = $event"></pagination-controls>
+</div>
+<div class="container mt-5">
+    <div class="container mt-4">
+        <h2>Reactive Form Example</h2>
+        
+        <form [formGroup]="userForm" (ngSubmit)="Submit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
+              <div style="color: red;" *ngIf="userForm.controls['firstName'].hasError('required') && userForm.controls['firstName'].touched">
+                First Name is required
+              </div>
+              </div>
+            <div class="form-group col-md-6"> 
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
+              <div style="color: red;" *ngIf="userForm.controls['lastName'].hasError('required') && userForm.controls['lastName'].touched">
+                Last Name is required
+              </div>
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNumber" formControlName="mobileNumber" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number">
+            <div  *ngIf="userForm.controls['mobileNumber'].hasError('required') && userForm.controls['mobileNumber'].touched">
+                Mobile Number is required
+            </div>
+            <div style="color: red;" *ngIf="userForm.controls['mobileNumber'].hasError('pattern') && userForm.controls['mobileNumber'].touched">
+                Please enter a valid 10-digit mobile number
+            </div>
+        </div>
+        
+          <br>
+          <button  type="submit" class="btn btn-info" (click)="Submit()">Submit</button>
+        </form>
+      </div>
+</div>
+
+
+
+
